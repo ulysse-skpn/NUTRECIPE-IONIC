@@ -51,7 +51,7 @@ module.exports = function (config) {
           flags: ['--disable-web-security']
       }
     },
-    singleRun: false,
+    singleRun: true,
     restartOnFileChange: true,
     sonarqubeReporter: {
       basePath: 'src/app', // test files folder
