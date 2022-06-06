@@ -1,0 +1,74 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-item>
+      <ion-router-link class="returnButton" (click)="goBack()" color="medium" target="_parent">
+        <ion-icon name="arrow-back-outline" size="large"></ion-icon>
+      </ion-router-link>
+      <ion-title>Inscription</ion-title>
+    </ion-item>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="registerFormGroup">
+    <ion-card>
+      <ion-item>
+        <ion-label>Formulaire d'inscription</ion-label>
+      </ion-item>
+    
+      <ion-card-content>
+
+        <ion-item>
+          <ion-label position="floating">Nom</ion-label>
+          <ion-input class="lastName" inputmode="text" type="text" required formControlName="lastNameControl" clear-input minlengh="1"></ion-input>
+        </ion-item>
+        <div class="error" *ngIf="errorMessage.lastNameControl.errors?.required">Ce champ est requis</div>
+        <div class="error" *ngIf="errorMessage.lastNameControl.errors?.minlength">1 caractères minimum</div>
+        
+
+        <ion-item>
+          <ion-label position="floating">Prénom</ion-label>
+          <ion-input class="firstName" inputmode="text" type="text" required formControlName="firstNameControl" clear-input minlengh="1"></ion-input>
+        </ion-item>
+        <div class="error" *ngIf="errorMessage.firstNameControl.errors?.required">Ce champ est requis</div>
+        <div class="error" *ngIf="errorMessage.firstNameControl.errors?.minlength">1 caractères minimum</div>
+        
+
+        <ion-item>
+          <ion-label position="floating">Téléphone</ion-label>
+          <ion-input class="tel" inputmode="tel" type="tel" formControlName="phoneNumberControl" clear-input></ion-input>
+        </ion-item>
+        <div class="error" *ngIf="errorMessage.phoneNumberControl.errors?.pattern">Le numéro n'est pas bien formaté</div>
+        <div class="error" *ngIf="errorMessage.phoneNumberControl.errors?.minlength">10 caractères minimum</div>
+        <div class="error" *ngIf="errorMessage.phoneNumberControl.errors?.maxlength">20 caractères maximum</div>
+
+
+        <ion-item>
+          <ion-label position="floating">Email</ion-label>
+          <ion-input class="email" inputmode="email" type="email" required formControlName="emailControl" clear-input></ion-input>
+        </ion-item>
+        <div class="error" *ngIf="errorMessage.emailControl.errors?.required">Ce champ est requis</div>
+        <div class="error" *ngIf="errorMessage.emailControl.errors?.email">L'email n'est pas valide</div>
+        <div class="error" *ngIf="errorMessage.emailControl.errors?.pattern">L'email n'est pas bien formaté</div>
+
+        <ion-item>
+          <ion-label position="floating">Mot de passe</ion-label>
+          <ion-input class="password" inputmode="text" type="password" required formControlName="passwordControl" clear-input minlength="6"></ion-input>
+        </ion-item>
+        <div class="error" *ngIf="errorMessage.passwordControl.errors?.required">Ce champ est requis</div>
+        <div class="error" *ngIf="errorMessage.passwordControl.errors?.minlength">6 caractères minimum</div>
+
+        <ion-item>
+          <ion-label position="floating">Confirmer mot de passe</ion-label>
+          <ion-input class="passwordControl" inputmode="text" type="password" required formControlName="passwordConfirmControl" clear-input minlength="6"></ion-input>
+        </ion-item>
+        <div class="error" *ngIf="errorMessage.passwordControl.errors?.required">Ce champ est requis</div>
+        <div class="error" *ngIf="errorMessage.passwordControl.errors?.minlength">6 caractères minimum</div>
+
+        <ion-item *ngIf="buttonVisible">
+          <ion-button class="valButton" slot="end" color="tertiary" type="submit" (click)="onFormSubmit()" [disabled]="registerFormGroup.invalid">Valider</ion-button>
+        </ion-item>
+      </ion-card-content>
+    </ion-card>
+  </form>
+</ion-content>

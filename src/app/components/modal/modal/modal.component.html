@@ -1,0 +1,162 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Détails
+    </ion-title>
+    <ion-item class="ion-item-button-toolbar close" slot="end" (click)="close()">Fermer</ion-item>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="type === 'recipe-details'">
+
+  <ion-card>
+    <ion-card-content>
+      <h1 class="ion-padding">{{ title }}</h1>
+    
+      <div class="wrapper" *ngIf="image">
+        <img src="./../../assets/images/plate.svg" alt="image de : {{title}}">
+      </div>
+    
+      <div class="wrapper" *ngIf="prep">
+        <ion-label>Temps de préparation</ion-label>
+        <div>{{ prep }}</div>
+      </div>
+    
+      <div class="wrapper" *ngIf="cook">
+        <ion-label>Temps confection</ion-label>
+        <div>{{ cook }}</div>
+      </div>
+    
+      <div class="wrapper" *ngIf="rest">
+        <ion-label>Temps de repos</ion-label>
+        <div>{{ rest }}</div>
+      </div>
+    
+      <hr>
+    
+      <div class="wrapper" *ngIf="serving_size">
+        <ion-label>Portion</ion-label>
+        <div>{{ serving_size }}</div>
+      </div>
+    
+      <hr>
+    
+      <div class="wrapper">
+        <ion-label>Catégories</ion-label>
+        <div>
+          {{ categories }}
+        </div>
+      </div>
+    
+      <hr>
+    
+      <div class="wrapper">
+        <ion-label>Liste d'ingrédients</ion-label>
+        <div class="step" *ngFor="let ingredient of ingredients_list">
+          <ion-icon name="ellipse"></ion-icon>
+          {{ ingredient }}
+        </div>
+      </div>
+    
+      <hr>
+    
+      <div class="wrapper">
+        <ion-label>Instructions</ion-label>
+        <div class="step" *ngFor="let step of instructions">
+          <ion-icon name="ellipse"></ion-icon>
+          {{ step }}
+        </div>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>
+
+
+
+<ion-content *ngIf="type === 'ingredient-details'">
+
+  <ion-card>
+    <ion-card-content>
+      <h1 class="ion-padding">{{ product_name }}</h1>
+
+      <div class="wrapper" *ngIf="image_ingredient">
+        <img src="{{ image_ingredient }}" alt="image de : {{ product_name }}">
+      </div>
+    
+      {{ image }}
+    
+      <div class="wrapper">
+        <ion-label>Appellation</ion-label>
+        <div>{{ product_name }}</div>
+      </div>
+    
+      <hr>
+    
+      <div class="wrapper" *ngIf="ingredient_text">
+        <ion-label>Composition</ion-label>
+        <div>{{ ingredient_text }}</div>
+      </div>
+    
+      <hr>
+    
+      <div class="wrapper" *ngIf="carbohydrates">
+        <ion-label>Glucides</ion-label>
+        <div>{{ carbohydrates }}</div>
+      </div>
+    
+      <hr>
+    
+      <div class="wrapper" *ngIf="proteins">
+        <ion-label>Protéines</ion-label>
+        <div>{{ proteins }}</div>
+      </div>
+    
+      <hr>
+    
+      <div class="wrapper" *ngIf="fats">
+        <ion-label>Lipides</ion-label>
+        <div>{{ fats }}</div>
+      </div>
+    
+      <hr>
+    
+      <div class="wrapper" *ngIf="salt">
+        <ion-label>Sel</ion-label>
+        <div>{{ salt }}</div>
+      </div>
+    
+      <hr>
+    
+      <div class="wrapper" *ngIf="calories">
+        <ion-label>Calories</ion-label>
+        <div>{{ calories }}</div>
+      </div>
+    
+      <hr>
+    
+      <div class="wrapper" *ngIf="nova_group">
+        <ion-label>Groupe NOVA</ion-label>
+        <div>{{ nova_group }}</div>
+      </div>
+    
+      <hr>
+    
+      <div class="wrapper" *ngIf="categories_ingredient">
+        <ion-label>Catégories</ion-label>
+        <div>
+          {{ categories }}
+        </div>
+      </div>
+    
+      <hr>
+    
+      <div class="wrapper" *ngIf="serving_size_ingredient">
+        <ion-label>Portion</ion-label>
+        <div>{{ serving_size }}</div>
+      </div>
+    </ion-card-content>
+  </ion-card>
+  
+
+</ion-content>

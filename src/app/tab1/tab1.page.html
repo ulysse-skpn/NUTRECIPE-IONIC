@@ -1,0 +1,171 @@
+<app-side-menu></app-side-menu>
+
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Accueil
+    </ion-title>
+    <ion-menu-button slot="end" class="side-menu-button"></ion-menu-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <ion-segment [(ngModel)]="selectTab" slot="fixed">
+    <ion-segment-button value="card" (click)="saveTab('card')">
+      <ion-label>Carte</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="list" (click)="saveTab('list')">
+      <ion-label>Icône</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="random" (click)="saveTab('random');getRandomRecipe()">
+      <ion-label>Recette aléatoire</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+  <ion-searchbar inputmode="search" animated debounce="800" [(ngModel)]="searchTerm"></ion-searchbar>
+
+  <div *ngIf="selectTab === 'card'">
+
+    <ion-list class="list">
+  
+       <ion-card class="list-card" *ngFor="let recipe of recipeList | filter:searchTerm" (click)="detail($event , recipe.recipeId)">
+          
+          <ion-card-content>
+            
+            <img src="./../../assets/images/plate.svg" alt="image indisponible">
+            <ion-card-title (click)="expand( $event , recipe)">{{ recipe.title }}</ion-card-title>
+
+            <ion-fab horizontal="end" vertical="bottom" slot="fixed" (click)="bookmark($event , recipe)" *ngIf="connected">
+              <ion-fab-button color="light">
+                <ion-icon class="bookmarkIcon" [ngClass]="{
+                  bookmarked: recipe.isBookmarked == true,
+                  notBookmarked: recipe.isBookmarked == false
+                }" name="heart-circle"></ion-icon>
+              </ion-fab-button>
+            </ion-fab>
+
+            <div *ngIf="recipe.expanded">
+              {{ recipe.ingredients_list }}
+            </div>
+            
+          </ion-card-content>
+        </ion-card>
+    </ion-list>
+
+  </div>
+
+  <div *ngIf="selectTab === 'list'">
+
+    <ion-list class="list">
+
+      <ion-grid>
+        <ion-row>
+          <ion-col sizeXs="6" *ngFor="let recipe of recipeList | filter:searchTerm">
+            <ion-card class="card" (click)="detail($event , recipe.recipeId)">
+              <ion-card-content>
+                
+                <ion-avatar>
+                  <img src="./../../assets/images/plate.svg" alt="image indisponible">
+                </ion-avatar>
+                <ion-card-title ionButton class="ionCardTitle">{{ recipe.title }}</ion-card-title>
+
+                <div *ngIf="connected">
+                  <button class="alignBookmarkButtons" slot="end" (click)="bookmark($event , recipe)">
+                      <ion-icon class="bookmarkIcon" [ngClass]="{
+                        bookmarked: recipe.isBookmarked == true,
+                        notBookmarked: recipe.isBookmarked == false
+                      }" name="heart-circle"></ion-icon>
+                  </button>
+                </div>
+
+                <div *ngIf="recipe.expanded">
+                  {{ recipe.ingredients_list }}
+                </div>
+                
+              </ion-card-content>
+            </ion-card>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-list>
+
+  </div>
+
+  <div *ngIf="selectTab === 'random'" class="random">
+    <ion-card class="list-card">
+          
+      <ion-card-content>
+        
+        <img class="img-random" src="./../../assets/images/plate.svg" alt="image indisponible">
+        <ion-card-title>{{ randomRecipe?.title }}</ion-card-title>
+
+        <ion-fab horizontal="end" vertical="bottom" slot="fixed" (click)="bookmark(randomRecipe)" *ngIf="connected">
+          <ion-fab-button color="light">
+            <ion-icon class="bookmarkIcon" [ngClass]="{
+              bookmarked: randomRecipe?.isBookmarked == true,
+              notBookmarked: randomRecipe?.isBookmarked == false
+            }" name="heart-circle"></ion-icon>
+          </ion-fab-button>
+        </ion-fab>
+        
+        <div class="wrapper" *ngIf="randomRecipe?.prep_time">
+          <ion-label>Temps de préparation</ion-label>
+          <div>{{ randomRecipe?.prep_time }}</div>
+        </div>
+      
+        <div class="wrapper" *ngIf="randomRecipe?.cook_time">
+          <ion-label>Temps confection</ion-label>
+          <div>{{ randomRecipe?.cook_time }}</div>
+        </div>
+      
+        <div class="wrapper" *ngIf="randomRecipe?.rest_time">
+          <ion-label>Temps de repos</ion-label>
+          <div>{{ randomRecipe?.rest_time }}</div>
+        </div>
+      
+        <hr>
+      
+        <div class="wrapper" *ngIf="randomRecipe?.serving_size">
+          <ion-label>Portion</ion-label>
+          <div>{{ randomRecipe?.serving_size }}</div>
+        </div>
+      
+        <hr>
+      
+        <div class="wrapper" *ngIf="randomRecipe?.categories">
+          <ion-label>Catégories</ion-label>
+          <div>
+            {{ randomRecipe?.categories }}
+          </div>
+        </div>
+      
+        <hr>
+      
+        <div class="wrapper" *ngIf="randomRecipe?.ingredients_list">
+          <ion-label>Liste d'ingrédients</ion-label>
+          <div class="step" *ngFor="let ingredientsListStep of randomRecipeIngredientsList">
+            <ion-icon name="ellipse"></ion-icon>
+            {{ ingredientsListStep }}
+          </div>
+        </div>
+      
+        <hr>
+      
+        <div class="wrapper" *ngIf="randomRecipe?.instructions">
+          <ion-label>Instructions</ion-label>
+          <div class="step" *ngFor="let instructionStep of randomRecipeInstructions">
+            <ion-icon name="ellipse"></ion-icon>
+            {{ instructionStep }}
+          </div>
+        </div>
+      </ion-card-content>
+    </ion-card>
+
+  </div>
+
+  <ion-infinite-scroll threshold="1000px" (ionInfinite)="loadData($event)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Chargement des données..."></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+</ion-content>

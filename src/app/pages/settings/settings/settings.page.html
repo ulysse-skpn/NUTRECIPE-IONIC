@@ -1,0 +1,74 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Paramètres</ion-title>
+    <ion-button class="dismiss" button slot="start" (click)="dismissModal()">Enregistrer</ion-button>
+    <ion-button class="modify" slot="end" (click)="modify()">{{ modifyButton }}</ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <form [formGroup]="settingFormGroup" class="ion-padding">
+
+    <ion-text><h2>Paramètres</h2></ion-text>
+    
+    <ion-list>
+      <ion-item-group>
+
+        <ion-item-divider>
+          <ion-label>Informations personnelles</ion-label>
+        </ion-item-divider>
+
+        <ion-item>
+          <ion-label>Nom</ion-label>
+          <ion-input type="text" clearInput [disabled]="isDisabled" formControlName="lastNameControl"></ion-input>
+        </ion-item>
+    
+        <ion-item>
+          <ion-label>Prénom</ion-label>
+          <ion-input type="text" clearInput [disabled]="isDisabled" formControlName="firstNameControl"></ion-input>
+        </ion-item>
+    
+        <ion-item>
+          <ion-label>Téléphone</ion-label>
+          <ion-input type="tel" clearInput [disabled]="isDisabled" formControlName="phoneNumberControl"></ion-input>
+        </ion-item>
+    
+        <ion-item>
+          <ion-label>Email</ion-label>
+          <ion-input type="email" clearInput [disabled]="isDisabled" formControlName="emailControl"></ion-input>
+        </ion-item>
+    
+        <ion-item>
+          <ion-label>Mot de passe</ion-label>
+          <ion-input type="password" clearInput [disabled]="isDisabled" formControlName="passwordControl"></ion-input>
+        </ion-item>
+
+        <ion-item-divider>
+          <ion-label>Notifications</ion-label>
+        </ion-item-divider>
+
+        <ion-item>
+          <ion-label>Notifications Push</ion-label>
+          <ion-toggle slot="end" name="grape" color="tertiary" formControlName="receiveEmailControl"></ion-toggle>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Email</ion-label>
+          <ion-toggle slot="end" name="grape" color="tertiary" formControlName="receiveNotificationControl"></ion-toggle>
+        </ion-item>
+
+        <ion-item-divider>
+          <ion-label>Compte</ion-label>
+        </ion-item-divider>
+
+        <ion-item>
+          <ion-label color="warning">Supprimer le compte !</ion-label>
+          <ion-button class="delete" slot="end" (click)="handleDelete()">Effacer</ion-button>
+        </ion-item>
+
+      </ion-item-group>
+    </ion-list>
+
+  </form>
+</ion-content>

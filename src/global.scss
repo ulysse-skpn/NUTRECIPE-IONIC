@@ -1,0 +1,117 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Core CSS required for Ionic components to work properly */
+@import "~@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "~@ionic/angular/css/normalize.css";
+@import "~@ionic/angular/css/structure.css";
+@import "~@ionic/angular/css/typography.css";
+@import '~@ionic/angular/css/display.css';
+
+/* Optional CSS utils that can be commented out */
+@import "~@ionic/angular/css/padding.css";
+@import "~@ionic/angular/css/float-elements.css";
+@import "~@ionic/angular/css/text-alignment.css";
+@import "~@ionic/angular/css/text-transformation.css";
+@import "~@ionic/angular/css/flex-utils.css";
+
+body{
+    --ion-background-color: #383b54!important;
+    --ion-text-color: #fcf5c0!important;
+}
+
+ion-tab-bar , ion-toolbar{
+    --background: #e02f58;
+    --color: whitesmoke;
+}
+
+.list{
+    background-color: transparent!important;
+}
+
+ion-icon , ion-label , .side-menu-button{
+    color:white;
+    cursor: pointer;
+}
+
+ion-segment{
+    --background: #72ba9c;
+}
+
+ion-searchbar , ion-item , ion-item-divider{
+    --background: #7a7e9e;
+}
+
+ion-card{
+    --background: #1d1e2c;
+}
+
+ion-content{
+    --padding-top: 1.5rem;
+}
+
+.list-card{
+    box-shadow: 5px 11px 15px 1px rgba(0,0,0,0.81);
+}
+
+.tab-selected {
+    --background: #be274a;
+}
+
+.bookmarkIcon{
+    padding: 0;
+    font-size: 4rem;
+}
+
+.bookmarked{
+    color: #72ba9c;
+}
+
+.notBookmarked{
+    color: white;
+}
+
+.ionCardTitle{
+    font-size: 1rem;
+}
+
+.card{
+    word-break: break-word;
+    height: 25vh;
+    margin: 0;
+}
+
+.alignBookmarkButtons{
+    background: 0;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+}
+
+.step{
+    margin: 1.5rem 0
+}
+
+.wrapper{
+    padding:0.5rem
+}
+
+.random > ion-card{
+    color: #fcf5c0;
+}
+
+.img-random{
+    box-shadow: 5px 11px 15px 1px rgba(0,0,0,0.81);
+}
+
+

@@ -1,0 +1,90 @@
+<app-side-menu></app-side-menu>
+
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Accueil
+    </ion-title>
+    <ion-menu-button slot="end" class="side-menu-button"></ion-menu-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <ion-segment [(ngModel)]="selectTab" slot="fixed">
+    <ion-segment-button value="card" (click)="saveTab('card')">
+      <ion-label>Carte</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="list" (click)="saveTab('list')">
+      <ion-label>Icône</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+  <ion-searchbar inputmode="search" animated debounce="800" [(ngModel)]="searchTerm"></ion-searchbar>
+
+  
+  <ion-list class="list">
+
+      <div *ngIf="selectTab === 'card'">
+       <ion-card class="list-card" *ngFor="let ingredient of ingredientList | filter:searchTerm" (click)="detail($event , ingredient.ingredientId)">
+          <ion-card-content>
+            <img src="{{ ingredient.image }}" alt="image indisponible">
+            <ion-card-title (click)="expand($event , ingredient)">{{ ingredient.product_name }}</ion-card-title>
+
+            <ion-fab horizontal="end" vertical="bottom" slot="fixed" (click)="bookmark( $event , ingredient)" *ngIf="connected">
+              <ion-fab-button color="light">
+                <ion-icon class="bookmarkIcon" [ngClass]="{
+                  bookmarked: ingredient.isBookmarked == true,
+                  notBookmarked: ingredient.isBookmarked == false
+                }" name="heart-circle"></ion-icon>
+              </ion-fab-button>
+            </ion-fab>
+
+            <div *ngIf="ingredient.expanded">
+              {{ ingredient.ingredient_text }}
+            </div>
+          </ion-card-content>
+        </ion-card>
+      </div>
+
+      <div *ngIf="selectTab === 'list'">
+        <ion-grid>
+          <ion-row>
+            <ion-col sizeXs="6" *ngFor="let ingredient of ingredientList | filter:searchTerm">
+              <ion-card class="card" (click)="detail($event , ingredient.ingredientId)">
+                <ion-card-content>
+                  
+                  <ion-avatar>
+                    <img src="{{ ingredient.image }}" alt="image indisponible">
+                  </ion-avatar>
+                  <ion-card-title ionButton class="ionCardTitle">{{ ingredient.product_name }}</ion-card-title>
+  
+                  <div *ngIf="connected">
+                    <button class="alignBookmarkButtons" slot="end" (click)="bookmark($event , ingredient)">
+                        <ion-icon class="bookmarkIcon" [ngClass]="{
+                          bookmarked: ingredient.isBookmarked == true,
+                          notBookmarked: ingredient.isBookmarked == false
+                        }" name="heart-circle"></ion-icon>
+                    </button>
+                  </div>
+  
+                  <div *ngIf="ingredient.expanded">
+                    {{ ingredient.ingredient_text }}
+                  </div>
+                  
+                </ion-card-content>
+              </ion-card>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </div>
+
+    </ion-list>
+
+
+  <ion-infinite-scroll threshold="1000px" (ionInfinite)="loadData($event)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Chargement des données..."></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+</ion-content>
+

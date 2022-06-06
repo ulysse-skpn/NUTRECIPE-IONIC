@@ -1,0 +1,13 @@
+ion-content{
+    --ion-background-color: #383b54;
+    --padding-top: 0rem;
+}
+
+ion-item-divider{
+    --background: #383b54;
+}
+
+ion-header > ion-toolbar > ion-button{
+    --background:transparent;
+    --background-activated:transparent;
+}
