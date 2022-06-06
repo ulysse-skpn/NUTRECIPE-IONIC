@@ -105,52 +105,52 @@ describe('SettingsPage', () => {
   }));
 
 
-  it('should create Setting Page', fakeAsync( () => {
-    tick()
-    expect(component).toBeTruthy()
-  }))
+  // it('should create Setting Page', fakeAsync( () => {
+  //   tick()
+  //   expect(component).toBeTruthy()
+  // }))
 
-  it('should call modify method when form is disabled', () => {
-    spyOn<SettingsPage,any>(component,'modify').and.callThrough()
+  // it('should call modify method when form is disabled', () => {
+  //   spyOn<SettingsPage,any>(component,'modify').and.callThrough()
 
-    component.isDisabled = true
+  //   component.isDisabled = true
 
-    component.modify()
+  //   component.modify()
 
-    if( component.isDisabled === true )
-    {
-      expect(component.isDisabled).toBeTrue()
-      expect(component.modifyButton).toEqual("Modifier")
-    }
+  //   if( component.isDisabled === true )
+  //   {
+  //     expect(component.isDisabled).toBeTrue()
+  //     expect(component.modifyButton).toEqual("Modifier")
+  //   }
 
-    component.isDisabled = false
+  //   component.isDisabled = false
 
-    component.modify()
+  //   component.modify()
 
-    if( component.isDisabled === false )
-    {
-      expect(component.isDisabled).toBeFalse()
-      expect(component.modifyButton).toEqual("Annuler")
-    }
+  //   if( component.isDisabled === false )
+  //   {
+  //     expect(component.isDisabled).toBeFalse()
+  //     expect(component.modifyButton).toEqual("Annuler")
+  //   }
 
-    expect(component.modify).toHaveBeenCalled()
-  });
+  //   expect(component.modify).toHaveBeenCalled()
+  // });
 
-  it('should call delete method', () => {
-    const spy = spyOn(component,'deleteUser').and.callThrough()
-    component.deleteUser()
-    expect(spy).toHaveBeenCalled()
-  });
+  // it('should call delete method', () => {
+  //   const spy = spyOn(component,'deleteUser').and.callThrough()
+  //   component.deleteUser()
+  //   expect(spy).toHaveBeenCalled()
+  // });
 
-  it('should call get errorMeessage method', () => {
-    const spy = spyOnProperty(component,'errorMessage','get')
-    expect(spy).toBeTruthy()
-  });
+  // it('should call get errorMeessage method', () => {
+  //   const spy = spyOnProperty(component,'errorMessage','get')
+  //   expect(spy).toBeTruthy()
+  // });
 
-  it('should call getFormValue method', () => {
-    spyOn<SettingsPage,any>(component,'getFormValue').and.callThrough()
-    component.getFormValue()
-    expect(component.getFormValue).toHaveBeenCalled()
-  });
+  // it('should call getFormValue method', () => {
+  //   spyOn<SettingsPage,any>(component,'getFormValue').and.callThrough()
+  //   component.getFormValue()
+  //   expect(component.getFormValue).toHaveBeenCalled()
+  // });
 
 });
