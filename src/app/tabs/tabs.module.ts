@@ -12,7 +12,6 @@ import { JwtModule } from "@auth0/angular-jwt";
 
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './../helpers/authconfig.interceptor';
-import { BrowserModule } from '@angular/platform-browser';
 
 export function tokenGetter() {
   return sessionStorage.getItem("access_token");
@@ -23,7 +22,6 @@ export function tokenGetter() {
     IonicModule,
     CommonModule,
     FormsModule,
-    BrowserModule,
     TabsPageRoutingModule,
     JwtModule.forRoot({
       config:

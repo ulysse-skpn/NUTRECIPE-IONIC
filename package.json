@@ -11,6 +11,7 @@
     "sonar": "node sonar-project.js",
     "ionic-build": "ionic build && ionic cap copy && ionic cap sync",
     "ionic-cap": "ionic capacitor run android",
+    "ionic-open": "ionic cap open android",
     "lint": "ng lint",
     "e2e": "ng e2e"
   },

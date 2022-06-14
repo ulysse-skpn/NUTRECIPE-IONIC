@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
   templateUrl: './settings.page.html',
   styleUrls: ['./settings.page.scss']
 })
+
 export class SettingsPage implements OnInit {
 
   newPassword:string = ""
@@ -40,7 +41,6 @@ export class SettingsPage implements OnInit {
     private jwtHelper: JwtHelperService,
     private router:Router
   ) { }
-
 
   ngOnInit(): void 
   {
@@ -167,7 +167,6 @@ export class SettingsPage implements OnInit {
             await this.authService.logout()
           })
         })
-  
       })
     }
   }
