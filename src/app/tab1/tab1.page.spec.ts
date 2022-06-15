@@ -12,9 +12,9 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter'
 import { FormsModule } from '@angular/forms';
 import { SideMenuComponent } from '../components/side-menu/side-menu/side-menu.component';
 import { of } from 'rxjs';
-import { IRecipeOut } from '../interfaces/IRecipe';
+import { IRecipeOut, RecipeResponse } from '../interfaces/IRecipe';
 
-const mockRecipeList:IRecipeOut[] = 
+const mockRecipeList:RecipeResponse[] = 
 [
   {
     id: 0,
@@ -28,11 +28,12 @@ const mockRecipeList:IRecipeOut[] =
     instructions: '',
     image: '',
     createdAt: undefined,
-    updatedAt: undefined
+    updatedAt: undefined,
+    isBookmarked:false
   }
 ]
 
-const mockRecipe:IRecipeOut = 
+const mockRecipe:RecipeResponse = 
 {
   id: 0,
   title: '',
@@ -45,7 +46,8 @@ const mockRecipe:IRecipeOut =
   instructions: '',
   image: '',
   createdAt: undefined,
-  updatedAt: undefined
+  updatedAt: undefined,
+  isBookmarked:false
 }
 
 

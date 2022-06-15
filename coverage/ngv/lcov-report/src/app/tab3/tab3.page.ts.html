@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">76.56% </span>
+                <span class="strong">68.75% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>49/64</span>
+                <span class='fraction'>44/64</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">62.5% </span>
+                <span class="strong">50% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>5/8</span>
+                <span class='fraction'>4/8</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">66.66% </span>
+                <span class="strong">61.9% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>14/21</span>
+                <span class='fraction'>13/21</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">80% </span>
+                <span class="strong">69.09% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>44/55</span>
+                <span class='fraction'>38/55</span>
             </div>
         
             
@@ -309,7 +309,7 @@
 <span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">7x</span>
-<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-yes">7x</span>
@@ -431,11 +431,11 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -446,16 +446,16 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -512,7 +512,7 @@ export class Tab3Page implements OnInit {
     if( this.jwtHelper.isTokenExpired(token) ) this.router.navigate(["/notauthorized"])
     this.connected = true
 &nbsp;
-    <span class="missing-if-branch" title="if path not taken" >I</span>if( sessionStorage.getItem("tab3_segment") ) <span class="cstat-no" title="statement not covered" >this.selectTab = sessionStorage.getItem("tab3_segment")</span>
+    if( sessionStorage.getItem("tab3_segment") ) this.selectTab = sessionStorage.getItem("tab3_segment")
     else this.selectTab = 'all'
     
     this.loadIngredientBookmarks()
@@ -633,13 +633,13 @@ export class Tab3Page implements OnInit {
 &nbsp;
     await toast.present()
     
-    await toast.onDidDismiss().then( (e) =&gt; {
+    await toast.onDidDismiss().then( <span class="fstat-no" title="function not covered" >(e</span>) =&gt; {
 &nbsp;
-      <span class="missing-if-branch" title="if path not taken" >I</span>if( e.role === "cancel" ) <span class="cstat-no" title="statement not covered" >return</span>
+<span class="cstat-no" title="statement not covered" >      <span class="missing-if-branch" title="if path not taken" >I</span>if( e.role === "cancel" ) <span class="cstat-no" title="statement not covered" >return</span></span>
 &nbsp;
-      item.isBookmarked = !item.isBookmarked  
+<span class="cstat-no" title="statement not covered" >      item.isBookmarked = !item.isBookmarked  </span>
 &nbsp;
-      <span class="missing-if-branch" title="if path not taken" >I</span>if( type === "ingredient" )
+<span class="cstat-no" title="statement not covered" >      if( type === "ingredient" )</span>
       {
         const bookmark: IIngredientBookmarkIn = 
 <span class="cstat-no" title="statement not covered" >        {</span>
@@ -650,16 +650,16 @@ export class Tab3Page implements OnInit {
   
 <span class="cstat-no" title="statement not covered" >        this.bookmarkService.updateIngredientBookmark(bookmark , bookmark.ingredientId).subscribe()</span>
       }
-      else if( type === "recipe" )
+      else <span class="cstat-no" title="statement not covered" ><span class="missing-if-branch" title="if path not taken" >I</span>if( type === "recipe" )</span>
       {
         const bookmark: IRecipeBookmarkIn = 
-        {
+<span class="cstat-no" title="statement not covered" >        {</span>
           recipeId: item.recipeId,
           userId: id,
           saved: false
         } 
   
-        this.bookmarkService.updateRecipeBookmark(bookmark , bookmark.recipeId).subscribe()
+<span class="cstat-no" title="statement not covered" >        this.bookmarkService.updateRecipeBookmark(bookmark , bookmark.recipeId).subscribe()</span>
       }
 &nbsp;
     })
@@ -682,7 +682,7 @@ export class Tab3Page implements OnInit {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at Tue Jun 07 2022 00:13:21 GMT+0200 (heure d’été d’Europe centrale)
+                at Wed Jun 15 2022 12:08:14 GMT+0200 (heure d’été d’Europe centrale)
             </div>
         <script src="../../../prettify.js"></script>
         <script>
