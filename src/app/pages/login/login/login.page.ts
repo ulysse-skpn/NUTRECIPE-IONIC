@@ -53,7 +53,8 @@ export class LoginPage implements OnInit {
     } 
 
     this.authService.login(credentials).subscribe( async(res:IUserOut) => {
-
+      console.log(res)
+      
       if( res.user.role !== "user" ) 
       {
         window.alert("Vous n'avez pas les droits pour vous connecter à l'application")

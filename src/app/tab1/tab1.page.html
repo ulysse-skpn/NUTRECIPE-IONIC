@@ -1,5 +1,3 @@
-<app-side-menu></app-side-menu>
-
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
@@ -23,6 +21,7 @@
     </ion-segment-button>
   </ion-segment>
 
+  <!-- <ion-searchbar inputmode="search" animated debounce="800" [(ngModel)]="searchTerm" *ngIf="selectTab === 'card' || selectTab === 'list'"></ion-searchbar> -->
   <ion-searchbar inputmode="search" animated debounce="800" [(ngModel)]="searchTerm"></ion-searchbar>
 
   <div *ngIf="selectTab === 'card'">
@@ -37,7 +36,7 @@
             <ion-card-title (click)="expand( $event , recipe)">{{ recipe.title }}</ion-card-title>
 
             <ion-fab horizontal="end" vertical="bottom" slot="fixed" (click)="bookmark($event , recipe)" *ngIf="connected">
-              <ion-fab-button color="light">
+              <ion-fab-button>
                 <ion-icon class="bookmarkIcon" [ngClass]="{
                   bookmarked: recipe.isBookmarked == true,
                   notBookmarked: recipe.isBookmarked == false
@@ -70,14 +69,14 @@
                 </ion-avatar>
                 <ion-card-title ionButton class="ionCardTitle">{{ recipe.title }}</ion-card-title>
 
-                <div *ngIf="connected">
-                  <button class="alignBookmarkButtons" slot="end" (click)="bookmark($event , recipe)">
-                      <ion-icon class="bookmarkIcon" [ngClass]="{
-                        bookmarked: recipe.isBookmarked == true,
-                        notBookmarked: recipe.isBookmarked == false
-                      }" name="heart-circle"></ion-icon>
-                  </button>
-                </div>
+                <ion-fab horizontal="end" vertical="bottom" slot="fixed" (click)="bookmark($event , recipe)" *ngIf="connected">
+                  <ion-fab-button>
+                    <ion-icon class="bookmarkIcon" [ngClass]="{
+                      bookmarked: recipe.isBookmarked === true,
+                      notBookmarked: recipe.isBookmarked === false
+                    }" name="heart-circle"></ion-icon>
+                  </ion-fab-button>
+                </ion-fab>
 
                 <div *ngIf="recipe.expanded">
                   {{ recipe.ingredients_list }}
@@ -95,19 +94,20 @@
   <div *ngIf="selectTab === 'random'" class="random">
     <ion-card class="list-card">
           
-      <ion-card-content>
+      <ion-card-content> 
         
-        <img class="img-random" src="./../../assets/images/plate.svg" alt="image indisponible">
-        <ion-card-title>{{ randomRecipe?.title }}</ion-card-title>
+        <img class="img" src="./../../assets/images/plate.svg" alt="image indisponible">
 
-        <ion-fab horizontal="end" vertical="bottom" slot="fixed" (click)="bookmark($event,randomRecipe)" *ngIf="connected">
-          <ion-fab-button color="light">
+        <ion-fab horizontal="end" slot="fixed" (click)="bookmark($event , randomRecipe)" *ngIf="connected">
+          <ion-fab-button>
             <ion-icon class="bookmarkIcon" [ngClass]="{
               bookmarked: randomRecipe?.isBookmarked === true,
               notBookmarked: randomRecipe?.isBookmarked === false
             }" name="heart-circle"></ion-icon>
           </ion-fab-button>
         </ion-fab>
+
+        <ion-card-title>{{ randomRecipe?.title }}</ion-card-title>
         
         <div class="wrapper" *ngIf="randomRecipe?.prep_time">
           <ion-label>Temps de préparation</ion-label>

@@ -44,8 +44,6 @@ export class RegisterPage {
     
     if( this.registerFormGroup.valid === false ) return
 
-    this.buttonVisible = false
-
     const user:IUserIn = 
     {
       last_name: form.lastNameControl.toUpperCase(),
@@ -60,6 +58,7 @@ export class RegisterPage {
     
     this.authService.register(user).subscribe( async(res:IUserOut) => {
       
+      this.buttonVisible = false
       sessionStorage.setItem( "access_token" , res.access_token )
       sessionStorage.setItem( "expiresIn" , res.expires_in.toString() )
 
