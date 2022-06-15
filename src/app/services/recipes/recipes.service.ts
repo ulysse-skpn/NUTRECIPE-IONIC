@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { tap , catchError, retry } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-import { IRecipeIn, IRecipeOut } from 'src/app/interfaces/IRecipe';
+import { IRecipeIn, IRecipeOut, RecipeResponse } from 'src/app/interfaces/IRecipe';
 
 @Injectable({
   providedIn: 'root'
@@ -30,12 +30,12 @@ export class RecipesService {
     )
   }
 
-  getAllRecipes():Observable<IRecipeOut[]>
+  getAllRecipes():Observable<RecipeResponse[]>
   {
     const url = `http://${this.host}:${this.port}/recipes`
-    return this.http.get<IRecipeOut[]>(url)
+    return this.http.get<RecipeResponse[]>(url)
     .pipe(
-      tap( (data:IRecipeOut[]) => {
+      tap( (data:RecipeResponse[]) => {
         console.log(data)
       }),
       retry(1),
@@ -43,12 +43,12 @@ export class RecipesService {
     )
   }
 
-  getAllRecipesPagination(pageIndex:number,pageSize:number):Observable<IRecipeOut[]>
+  getAllRecipesPagination(pageIndex:number,pageSize:number):Observable<RecipeResponse[]>
   {
     const url = `http://${this.host}:${this.port}/recipes/pagination`
-    return this.http.post<IRecipeOut[]>(url,{pageIndex,pageSize})
+    return this.http.post<RecipeResponse[]>(url,{pageIndex,pageSize})
     .pipe(
-      tap( (data:IRecipeOut[]) => {
+      tap( (data:RecipeResponse[]) => {
         console.log(data)
       }),
       retry(1),
@@ -56,12 +56,12 @@ export class RecipesService {
     )
   }
 
-  getRecipeById(id:number):Observable<IRecipeOut>
+  getRecipeById(id:number):Observable<RecipeResponse>
   {
     const url = `http://${this.host}:${this.port}/recipes/${id}`
-    return this.http.get<IRecipeOut>(url)
+    return this.http.get<RecipeResponse>(url)
     .pipe(
-      tap( (data:IRecipeOut) => {
+      tap( (data:RecipeResponse) => {
         console.log(data)
       }),
       retry(1),

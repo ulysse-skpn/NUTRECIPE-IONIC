@@ -100,11 +100,11 @@
         <img class="img-random" src="./../../assets/images/plate.svg" alt="image indisponible">
         <ion-card-title>{{ randomRecipe?.title }}</ion-card-title>
 
-        <ion-fab horizontal="end" vertical="bottom" slot="fixed" (click)="bookmark(randomRecipe)" *ngIf="connected">
+        <ion-fab horizontal="end" vertical="bottom" slot="fixed" (click)="bookmark($event,randomRecipe)" *ngIf="connected">
           <ion-fab-button color="light">
             <ion-icon class="bookmarkIcon" [ngClass]="{
-              bookmarked: randomRecipe?.isBookmarked == true,
-              notBookmarked: randomRecipe?.isBookmarked == false
+              bookmarked: randomRecipe?.isBookmarked === true,
+              notBookmarked: randomRecipe?.isBookmarked === false
             }" name="heart-circle"></ion-icon>
           </ion-fab-button>
         </ion-fab>
@@ -114,9 +114,9 @@
           <div>{{ randomRecipe?.prep_time }}</div>
         </div>
       
-        <div class="wrapper" *ngIf="randomRecipe?.cook_time">
+        <div class="wrapper" *ngIf="randomRecipe?.cooking_time">
           <ion-label>Temps confection</ion-label>
-          <div>{{ randomRecipe?.cook_time }}</div>
+          <div>{{ randomRecipe?.cooking_time }}</div>
         </div>
       
         <div class="wrapper" *ngIf="randomRecipe?.rest_time">

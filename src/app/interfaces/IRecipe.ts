@@ -26,3 +26,8 @@ export interface IRecipeOut
     createdAt:Date
     updatedAt:Date
 }
+
+export interface RecipeResponse extends IRecipeOut
+{
+    isBookmarked:any
+}

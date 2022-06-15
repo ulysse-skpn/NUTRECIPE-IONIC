@@ -1,11 +1,10 @@
 import { IonicModule } from '@ionic/angular';
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Tab2Page } from './tab2.page';
 
 import { Tab2PageRoutingModule } from './tab2-routing.module';
-import { SideMenuComponent } from '../components/side-menu/side-menu/side-menu.component';
 
 import { ScrollingModule } from '@angular/cdk/scrolling'
 import { Ng2SearchPipeModule } from 'ng2-search-filter'
@@ -20,6 +19,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter'
     Ng2SearchPipeModule,
     Tab2PageRoutingModule
   ],
-  declarations: [Tab2Page,SideMenuComponent]
+  declarations: [Tab2Page],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class Tab2PageModule {}

@@ -12,6 +12,7 @@ import { JwtModule } from "@auth0/angular-jwt";
 
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './../helpers/authconfig.interceptor';
+import { SideMenuComponent } from '../components/side-menu/side-menu/side-menu.component';
 
 export function tokenGetter() {
   return sessionStorage.getItem("access_token");
@@ -36,7 +37,7 @@ export function tokenGetter() {
       }
     })
   ],
-  declarations: [TabsPage,ModalComponent],
+  declarations: [TabsPage,ModalComponent,SideMenuComponent],
   providers: 
   [
     {

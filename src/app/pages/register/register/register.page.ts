@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
-import { IUserIn } from 'src/app/interfaces/IUser';
+import { IUserIn, IUserOut } from 'src/app/interfaces/IUser';
 import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
@@ -58,7 +58,7 @@ export class RegisterPage {
       receiveNotification:true
     }
     
-    this.authService.register(user).subscribe( async(res) => {
+    this.authService.register(user).subscribe( async(res:IUserOut) => {
       
       sessionStorage.setItem( "access_token" , res.access_token )
       sessionStorage.setItem( "expiresIn" , res.expires_in.toString() )

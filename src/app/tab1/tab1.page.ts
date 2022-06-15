@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ToastController , ModalController } from '@ionic/angular';
 import { ModalComponent } from '../components/modal/modal/modal.component';
 import { IRecipeBookmarkIn } from '../interfaces/IBookmark';
-import { IRecipeOut } from '../interfaces/IRecipe';
+import { IRecipeOut, RecipeResponse } from '../interfaces/IRecipe';
 import { BookmarksService } from '../services/bookmarks/bookmarks.service';
 import { RecipesService } from '../services/recipes/recipes.service';
 
@@ -17,7 +17,7 @@ export class Tab1Page implements OnInit {
   searchTerm:string = ""
   recipeArraySize!:number
   recipeList = []
-  randomRecipe:IRecipeOut
+  randomRecipe:RecipeResponse
   randomRecipeIngredientsList:string[]
   randomRecipeInstructions:string[]
   selectTab!:string
@@ -139,7 +139,7 @@ export class Tab1Page implements OnInit {
   {
     const randomId = this.randomInt()
 
-    this.recipeService.getRecipeById(randomId).subscribe( (res:IRecipeOut) => {
+    this.recipeService.getRecipeById(randomId).subscribe( (res:RecipeResponse) => {
       res['expanded'] = false
       res.ingredients_list = this.removeSpecialChars(res.ingredients_list)
       this.randomRecipeIngredientsList = this.createStep(res.ingredients_list,",")
