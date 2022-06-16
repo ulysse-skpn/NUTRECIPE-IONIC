@@ -53,7 +53,6 @@ export class LoginPage implements OnInit {
     } 
 
     this.authService.login(credentials).subscribe( async(res:IUserOut) => {
-      console.log(res)
       
       if( res.user.role !== "user" ) 
       {

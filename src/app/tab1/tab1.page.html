@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Accueil
+      Liste de recettes
     </ion-title>
     <ion-menu-button slot="end" class="side-menu-button"></ion-menu-button>
   </ion-toolbar>
@@ -21,8 +21,7 @@
     </ion-segment-button>
   </ion-segment>
 
-  <!-- <ion-searchbar inputmode="search" animated debounce="800" [(ngModel)]="searchTerm" *ngIf="selectTab === 'card' || selectTab === 'list'"></ion-searchbar> -->
-  <ion-searchbar inputmode="search" animated debounce="800" [(ngModel)]="searchTerm"></ion-searchbar>
+  <ion-searchbar placeholder="Recherche" inputmode="search" animated debounce="800" [(ngModel)]="searchTerm" *ngIf="selectTab === 'card' || selectTab === 'list'"></ion-searchbar>
 
   <div *ngIf="selectTab === 'card'">
 
@@ -63,13 +62,8 @@
           <ion-col sizeXs="6" *ngFor="let recipe of recipeList | filter:searchTerm">
             <ion-card class="card" (click)="detail($event , recipe.recipeId)">
               <ion-card-content>
-                
-                <ion-avatar>
-                  <img src="./../../assets/images/plate.svg" alt="image indisponible">
-                </ion-avatar>
-                <ion-card-title ionButton class="ionCardTitle">{{ recipe.title }}</ion-card-title>
 
-                <ion-fab horizontal="end" vertical="bottom" slot="fixed" (click)="bookmark($event , recipe)" *ngIf="connected">
+                <ion-fab horizontal="end" vertical="top" (click)="bookmark($event , recipe)" *ngIf="connected">
                   <ion-fab-button>
                     <ion-icon class="bookmarkIcon" [ngClass]="{
                       bookmarked: recipe.isBookmarked === true,
@@ -77,6 +71,11 @@
                     }" name="heart-circle"></ion-icon>
                   </ion-fab-button>
                 </ion-fab>
+
+                <ion-avatar>
+                  <img src="./../../assets/images/plate.svg" alt="image indisponible">
+                </ion-avatar>
+                <ion-card-title ionButton class="ionCardTitle">{{ recipe.title }}</ion-card-title>
 
                 <div *ngIf="recipe.expanded">
                   {{ recipe.ingredients_list }}
